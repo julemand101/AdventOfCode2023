@@ -1,0 +1,13 @@
+name: advent_of_code_2023
+description: Solutions for Advent of Code 2023.
+version: 0.0.1
+
+environment:
+  sdk: "^3.2.0"
+
+dependencies:
+  collection: ^1.18.0
+
+dev_dependencies:
+  lints: ^3.0.0
+  test: ^1.24.9
