@@ -1,23 +1,67 @@
-// --- Day 1: Calorie Counting ---
-// https://adventofcode.com/2022/day/1
+// --- Day 1: Trebuchet?! ---
+// https://adventofcode.com/2023/day/1
 
-int solveA(Iterable<String> input) => getSortedSums(input).first;
+int solveA(Iterable<String> input) => input.fold(0, (sum, line) {
+      int? firstDigit, secondDigit;
 
-int solveB(Iterable<String> input) =>
-    getSortedSums(input).take(3).reduce((a, b) => a + b);
+      for (var i = 0; i < line.length; i++) {
+        int? parsed = int.tryParse(line[i]);
 
-List<int> getSortedSums(Iterable<String> input) {
-  List<int> sums = [];
-  int tmpSum = 0;
+        if (parsed != null) {
+          if (firstDigit == null) {
+            firstDigit = parsed;
+          } else {
+            secondDigit = parsed;
+          }
+        }
+      }
 
-  for (final line in input.followedBy(const [''])) {
-    if (line.isEmpty) {
-      sums.add(tmpSum);
-      tmpSum = 0;
-    } else {
-      tmpSum += int.parse(line);
-    }
-  }
+      secondDigit ??= firstDigit;
 
-  return sums..sort((a, b) => b.compareTo(a));
-}
+      return sum + int.parse('$firstDigit$secondDigit');
+    });
+
+const List<String> numberStrings = [
+  'zero',
+  'one',
+  'two',
+  'three',
+  'four',
+  'five',
+  'six',
+  'seven',
+  'eight',
+  'nine',
+];
+
+int solveB(Iterable<String> input) => input.fold(0, (sum, line) {
+      int? firstDigit;
+      int? secondDigit;
+
+      for (var i = 0; i < line.length; i++) {
+        int? parsed = int.tryParse(line[i]);
+
+        if (parsed != null) {
+          if (firstDigit == null) {
+            firstDigit = parsed;
+          } else {
+            secondDigit = parsed;
+          }
+        } else {
+          for (final (int value, String string) in numberStrings.indexed) {
+            if (i + string.length - 1 < line.length &&
+                line.substring(i, i + string.length) == string) {
+              if (firstDigit == null) {
+                firstDigit = value;
+              } else {
+                secondDigit = value;
+              }
+            }
+          }
+        }
+      }
+
+      secondDigit ??= firstDigit;
+
+      return sum + int.parse('$firstDigit$secondDigit');
+    });

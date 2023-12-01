@@ -1,43 +1,44 @@
-// --- Day 1: Calorie Counting ---
-// https://adventofcode.com/2022/day/1
+// --- Day 1: Trebuchet?! ---
+// https://adventofcode.com/2023/day/1
 
 import 'dart:io';
 import 'package:advent_of_code_2023/day01.dart';
 import 'package:test/test.dart';
 
 final input = File('test/data/day01.txt').readAsLinesSync();
-const testInput = [
-  '1000',
-  '2000',
-  '3000',
-  '',
-  '4000',
-  '',
-  '5000',
-  '6000',
-  '',
-  '7000',
-  '8000',
-  '9000',
-  '',
-  '10000',
-];
 
 void main() {
   group('Part One', () {
     test('Example 1', () {
-      expect(solveA(testInput), equals(24000));
+      expect(
+          solveA(const [
+            '1abc2',
+            'pqr3stu8vwx',
+            'a1b2c3d4e5f',
+            'treb7uchet',
+          ]),
+          equals(142));
     });
     test('Solution', () {
-      expect(solveA(input), equals(69912));
+      expect(solveA(input), equals(53974));
     });
   });
   group('Part Two', () {
     test('Example 1', () {
-      expect(solveB(testInput), equals(45000));
+      expect(
+          solveB(const [
+            'two1nine',
+            'eightwothree',
+            'abcone2threexyz',
+            'xtwone3four',
+            '4nineeightseven2',
+            'zoneight234',
+            '7pqrstsixteen',
+          ]),
+          equals(281));
     });
     test('Solution', () {
-      expect(solveB(input), equals(208180));
+      expect(solveB(input), equals(52840));
     });
   });
 }
