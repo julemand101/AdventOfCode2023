@@ -1,25 +1,15 @@
 // --- Day 1: Trebuchet?! ---
 // https://adventofcode.com/2023/day/1
 
-int solveA(Iterable<String> input) => input.fold(0, (sum, line) {
-      int? firstDigit, secondDigit;
+import 'package:collection/collection.dart';
 
-      for (var i = 0; i < line.length; i++) {
-        int? parsed = int.tryParse(line[i]);
+int solveA(Iterable<String> input) =>
+    input.map((line) => line.split('')).map((charList) {
+      final firstDigit = charList.map(int.tryParse).nonNulls.first;
+      final lastDigit = charList.reversed.map(int.tryParse).nonNulls.first;
 
-        if (parsed != null) {
-          if (firstDigit == null) {
-            firstDigit = parsed;
-          } else {
-            secondDigit = parsed;
-          }
-        }
-      }
-
-      secondDigit ??= firstDigit;
-
-      return sum + int.parse('$firstDigit$secondDigit');
-    });
+      return firstDigit * 10 + lastDigit;
+    }).sum;
 
 const List<String> numberStrings = [
   'zero',
@@ -34,7 +24,7 @@ const List<String> numberStrings = [
   'nine',
 ];
 
-int solveB(Iterable<String> input) => input.fold(0, (sum, line) {
+int solveB(Iterable<String> input) => input.map((line) {
       int? firstDigit;
       int? secondDigit;
 
@@ -63,5 +53,5 @@ int solveB(Iterable<String> input) => input.fold(0, (sum, line) {
 
       secondDigit ??= firstDigit;
 
-      return sum + int.parse('$firstDigit$secondDigit');
-    });
+      return int.parse('$firstDigit$secondDigit');
+    }).sum;
