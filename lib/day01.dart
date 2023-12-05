@@ -12,7 +12,7 @@ int solveA(Iterable<String> input) =>
     }).sum;
 
 const List<String> numberStrings = [
-  'zero',
+  'zero', // Added so index position in list matches the number as String
   'one',
   'two',
   'three',
