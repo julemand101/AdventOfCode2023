@@ -5,39 +5,30 @@ int solveA(List<String> input) {
   var sum = 0;
   var numberNearSymbol = false;
 
+  void numberDone(StringBuffer sb) {
+    if (sb.isNotEmpty) {
+      if (numberNearSymbol) {
+        sum += int.parse(sb.toString());
+        numberNearSymbol = false;
+      }
+      sb.clear();
+    }
+  }
+
   for (final (y, line) in input.indexed) {
     final sb = StringBuffer();
 
     for (final (x, char) in line.split('').indexed) {
       if (int.tryParse(char) case final number?) {
-        if (numberNearSymbol || anySymbolAround(x, y, input)) {
+        if (numberNearSymbol || symbolsAround(x, y, input).isNotEmpty) {
           numberNearSymbol = true;
         }
         sb.write(number);
       } else {
-        if (sb.isNotEmpty) {
-          final number = int.parse(sb.toString());
-
-          if (numberNearSymbol) {
-            sum += number;
-          }
-
-          numberNearSymbol = false;
-          sb.clear();
-        }
+        numberDone(sb);
       }
     }
-
-    if (sb.isNotEmpty) {
-      final number = int.parse(sb.toString());
-
-      if (numberNearSymbol) {
-        sum += number;
-        numberNearSymbol = false;
-      }
-
-      sb.clear();
-    }
+    numberDone(sb);
   }
 
   return sum;
@@ -47,19 +38,28 @@ int solveB(List<String> input) {
   return 0;
 }
 
-bool anySymbolAround(int x, int y, List<String> input) =>
-    safeCheck(x - 1, y - 1, input) ||
-    safeCheck(x, y - 1, input) ||
-    safeCheck(x + 1, y - 1, input) ||
-    safeCheck(x - 1, y, input) ||
-    safeCheck(x + 1, y, input) ||
-    safeCheck(x - 1, y + 1, input) ||
-    safeCheck(x, y + 1, input) ||
-    safeCheck(x + 1, y + 1, input);
+typedef FoundSymbol = ({String symbol, ({int x, int y}) point2D});
+
+List<FoundSymbol> symbolsAround(int x, int y, List<String> input) => [
+      if (safeCheck(x - 1, y - 1, input) case final foundSymbol?) foundSymbol,
+      if (safeCheck(x, y - 1, input) case final foundSymbol?) foundSymbol,
+      if (safeCheck(x + 1, y - 1, input) case final foundSymbol?) foundSymbol,
+      if (safeCheck(x - 1, y, input) case final foundSymbol?) foundSymbol,
+      if (safeCheck(x + 1, y, input) case final foundSymbol?) foundSymbol,
+      if (safeCheck(x - 1, y + 1, input) case final foundSymbol?) foundSymbol,
+      if (safeCheck(x, y + 1, input) case final foundSymbol?) foundSymbol,
+      if (safeCheck(x + 1, y + 1, input) case final foundSymbol?) foundSymbol,
+    ];
 
 final regExp = RegExp(r'\.|\d');
 
-bool safeCheck(int x, int y, List<String> input) =>
-    (x >= 0 && x < input.first.length && y >= 0 && y < input.length)
-        ? !regExp.hasMatch(input[y][x])
-        : false;
+FoundSymbol? safeCheck(int x, int y, List<String> input) {
+  if (x >= 0 && x < input.first.length && y >= 0 && y < input.length) {
+    final char = input[y][x];
+
+    if (!regExp.hasMatch(char)) {
+      return (symbol: char, point2D: (x: x, y: y));
+    }
+  }
+  return null;
+}
