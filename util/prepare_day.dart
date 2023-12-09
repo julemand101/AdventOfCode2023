@@ -39,6 +39,7 @@ int solveA(Iterable<String> input) {
 
 import 'dart:io';
 import 'package:advent_of_code_$year/$dayFileName';
+import 'package:advent_of_code_$year/util.dart';
 import 'package:test/test.dart';
 
 final input = File('$dataPath').readAsLinesSync();
@@ -47,9 +48,10 @@ void main() {
   group('Part One', () {
     test('Example 1', () {
       expect(
-          solveA(const [
-            '<someLine>',
-          ]),
+          solveA(r\'\'\'
+<SomeLines>
+\'\'\'
+              .asLines),
           equals(-1));
     });
     test('Solution', () {
