@@ -12,9 +12,11 @@ int solveA(Iterable<String> input) => input
 int solveB(Iterable<String> input) {
   List<int> cards = List.generate(input.length, (_) => 1, growable: false);
 
-  for (final (i, card) in input.map(parse).indexed) {
-    final score = card.winningNumbers.intersection(card.numbersYouHave).length;
-
+  for (final (i, score) in input
+      .map(parse)
+      .map((card) =>
+          card.winningNumbers.intersection(card.numbersYouHave).length)
+      .indexed) {
     for (var k = 1; k <= score && i + k < cards.length; k++) {
       cards[i + k] += cards[i];
     }
