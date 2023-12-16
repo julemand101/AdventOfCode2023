@@ -98,7 +98,7 @@ humidity-to-location map:
           equals(46));
     });
     test('Solution', () {
-      expect(solveB(input), equals(-1));
+      expect(solveB(input), equals(9622622));
     }, skip: true);
   });
 }
