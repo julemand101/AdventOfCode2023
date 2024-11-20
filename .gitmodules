@@ -1,0 +1,3 @@
+[submodule "test/data"]
+	path = test/data
+	url = https://github.com/julemand101/AdventOfCode2023_data.git
