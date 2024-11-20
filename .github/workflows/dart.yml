@@ -8,6 +8,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+      with:
+        submodules: 'true'
+        token: ${{ secrets.PAT_TOKEN }}
+
     - uses: dart-lang/setup-dart@v1
     
     - name: Install dependencies
