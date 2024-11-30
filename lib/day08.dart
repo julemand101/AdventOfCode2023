@@ -51,18 +51,49 @@ int solveB(Iterable<String> input) {
   }
   instructions!;
 
-  var currentPositions = [...network.keys.where((pos) => pos.endsWith('A'))];
+  final currentPositions = [...network.keys.where((pos) => pos.endsWith('A'))];
+  final stepsToStop = List.filled(currentPositions.length, 0);
   var steps = 0;
 
-  while (!currentPositions.every((pos) => pos.endsWith('Z'))) {
+  while (stepsToStop.contains(0)) {
     final instruction = instructions[steps++ % instructions.length];
 
     for (var i = 0; i < currentPositions.length; i++) {
       final nextStep = network[currentPositions[i]]!;
 
       currentPositions[i] = instruction ? nextStep.left : nextStep.right;
+
+      if (currentPositions[i].endsWith('Z') && stepsToStop[i] == 0) {
+        stepsToStop[i] = steps;
+      }
     }
   }
 
-  return steps;
+  final factorList = List.filled(stepsToStop.length, 1);
+
+  bool foundCommonStep() {
+    int first = stepsToStop[0] * factorList[0];
+
+    for (var i = 1; i < stepsToStop.length; i++) {
+      if (first != stepsToStop[i] * factorList[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  while (!foundCommonStep()) {
+    int first = stepsToStop[0] * factorList[0];
+    int index = 0;
+
+    for (var i = 1; i < stepsToStop.length; i++) {
+      if (stepsToStop[i] * factorList[i] < first) {
+        index = i;
+      }
+    }
+
+    factorList[index]++;
+  }
+
+  return stepsToStop[0] * factorList[0];
 }

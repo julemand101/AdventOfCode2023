@@ -61,7 +61,7 @@ XXX = (XXX, XXX)
           equals(6));
     });
     test('Solution', () {
-      expect(solveB(input), equals(-1));
+      expect(solveB(input), equals(21003205388413));
     });
-  }, skip: true);
+  });
 }
