@@ -1,38 +1,87 @@
 // --- Day 7: Camel Cards ---
 // https://adventofcode.com/2023/day/7
 
-int solveA(Iterable<String> input) {
-  List<Hand> hands = [...input.map(Hand.new)]..sort();
-  return hands
-      .asMap()
-      .entries
-      .map((entry) => (entry.key + 1) * entry.value.bid)
-      .reduce((a, b) => a + b);
-}
+int solveA(Iterable<String> input) => ([...input.map(Hand.part1)]..sort())
+    .asMap()
+    .entries
+    .map((entry) => (entry.key + 1) * entry.value.bid)
+    .reduce((a, b) => a + b);
 
-int solveB(Iterable<String> input) {
-  return 0;
-}
+int solveB(Iterable<String> input) => ([...input.map(Hand.part2)]..sort())
+    .asMap()
+    .entries
+    .map((entry) => (entry.key + 1) * entry.value.bid)
+    .reduce((a, b) => a + b);
 
 class Hand implements Comparable<Hand> {
-  final List<String> cards;
   final List<int> cardValues;
   final int bid;
   final TypeOfHand typeOfHand;
 
-  Hand._(this.cards, this.bid)
-      : typeOfHand = getTypeOfHand(cards),
-        cardValues = [...cards.map((c) => cardValue[c]!)];
+  Hand._(this.cardValues, this.bid, this.typeOfHand);
 
-  factory Hand(String line) {
+  factory Hand.part1(String line) {
+    const cardValueMap = {
+      'A': 14,
+      'K': 13,
+      'Q': 12,
+      'J': 11,
+      'T': 10,
+      '9': 9,
+      '8': 8,
+      '7': 7,
+      '6': 6,
+      '5': 5,
+      '4': 4,
+      '3': 3,
+      '2': 2,
+    };
     final [cardsString, bidString] = line.split(' ');
-    return Hand._(cardsString.split(''), int.parse(bidString));
+    final cardValues = [
+      ...cardsString.split('').map((card) => cardValueMap[card]!)
+    ];
+
+    return Hand._(cardValues, int.parse(bidString), getTypeOfHand(cardValues));
   }
 
-  static TypeOfHand getTypeOfHand(List<String> cards) {
-    Map<String, int> cardCount = {};
+  factory Hand.part2(String line) {
+    const cardValueMap = {
+      'A': 13,
+      'K': 12,
+      'Q': 11,
+      'T': 10,
+      '9': 9,
+      '8': 8,
+      '7': 7,
+      '6': 6,
+      '5': 5,
+      '4': 4,
+      '3': 3,
+      '2': 2,
+      'J': 1,
+    };
+    final [cardsString, bidString] = line.split(' ');
+    final cardValues = [
+      ...cardsString.split('').map((card) => cardValueMap[card]!)
+    ];
 
-    for (String card in cards) {
+    // Find best hand by change J to different other cards
+    var typeOfBestHand = getTypeOfHand(cardValues);
+    for (var i = 1; i <= 13; i++) {
+      if (getTypeOfHand(cardValues.map((card) => card == 1 ? card + i : card))
+          case final newTypeOfHand
+          when newTypeOfHand.value > typeOfBestHand.value) {
+        typeOfBestHand = newTypeOfHand;
+      }
+    }
+
+    return Hand._(cardValues, int.parse(bidString), typeOfBestHand);
+  }
+
+  static TypeOfHand getTypeOfHand(Iterable<int> cards) {
+    Map<int, int> cardCount = {};
+
+    for (int card in cards) {
       cardCount.update(card, (i) => i + 1, ifAbsent: () => 1);
     }
 
@@ -81,9 +130,6 @@ class Hand implements Comparable<Hand> {
   }
 
   @override
-  String toString() => 'Cards: $cards, Bid: $bid, Type: $typeOfHand';
-
-  @override
   int compareTo(Hand other) {
     int compareHand = typeOfHand.value.compareTo(other.typeOfHand.value);
 
@@ -115,19 +161,3 @@ enum TypeOfHand {
   final int value;
   const TypeOfHand(this.value);
 }
-
-const Map<String, int> cardValue = {
-  'A': 14,
-  'K': 13,
-  'Q': 12,
-  'J': 11,
-  'T': 10,
-  '9': 9,
-  '8': 8,
-  '7': 7,
-  '6': 6,
-  '5': 5,
-  '4': 4,
-  '3': 3,
-  '2': 2,
-};

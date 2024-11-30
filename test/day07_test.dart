@@ -40,7 +40,7 @@ QQQJA 483
           equals(5905));
     });
     test('Solution', () {
-      expect(solveB(input), equals(-1));
+      expect(solveB(input), equals(243101568));
     });
-  }, skip: true);
+  });
 }
