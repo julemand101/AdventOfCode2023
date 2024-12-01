@@ -69,31 +69,6 @@ int solveB(Iterable<String> input) {
     }
   }
 
-  final factorList = List.filled(stepsToStop.length, 1);
-
-  bool foundCommonStep() {
-    int first = stepsToStop[0] * factorList[0];
-
-    for (var i = 1; i < stepsToStop.length; i++) {
-      if (first != stepsToStop[i] * factorList[i]) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  while (!foundCommonStep()) {
-    int first = stepsToStop[0] * factorList[0];
-    int index = 0;
-
-    for (var i = 1; i < stepsToStop.length; i++) {
-      if (stepsToStop[i] * factorList[i] < first) {
-        index = i;
-      }
-    }
-
-    factorList[index]++;
-  }
-
-  return stepsToStop[0] * factorList[0];
+  // least common multiple (LCM);
+  return stepsToStop.reduce((a, b) => a * b ~/ a.gcd(b));
 }
