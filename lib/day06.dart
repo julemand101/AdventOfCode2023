@@ -53,12 +53,12 @@ List<RaceRecord> parseInput(Iterable<String> input, bool kerning) {
 
   if (kerning) {
     return [
-      (time: int.parse(times.join()), distance: int.parse(distances.join()))
+      (time: int.parse(times.join()), distance: int.parse(distances.join())),
     ];
   } else {
     return [
       for (var i = 0; i < times.length; i++)
-        (time: times[i], distance: distances[i])
+        (time: times[i], distance: distances[i]),
     ];
   }
 }

@@ -7,7 +7,8 @@ import 'package:advent_of_code_2023/util.dart';
 import 'package:test/test.dart';
 
 final input = File('test/data/day03.txt').readAsLinesSync();
-final exampleInput = r'''
+final exampleInput =
+    r'''
 467..114..
 ...*......
 ..35..633.
@@ -18,8 +19,7 @@ final exampleInput = r'''
 ......755.
 ...$.*....
 .664.598..
-'''
-    .toLinesList();
+'''.toLinesList();
 
 void main() {
   group('Part One', () {

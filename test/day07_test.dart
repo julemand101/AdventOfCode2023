@@ -12,15 +12,17 @@ void main() {
   group('Part One', () {
     test('Example 1', () {
       expect(
-          solveA(r'''
+        solveA(
+          r'''
 32T3K 765
 T55J5 684
 KK677 28
 KTJJT 220
 QQQJA 483
-'''
-              .asLines),
-          equals(6440));
+'''.asLines,
+        ),
+        equals(6440),
+      );
     });
     test('Solution', () {
       expect(solveA(input), equals(241344943));
@@ -29,15 +31,17 @@ QQQJA 483
   group('Part Two', () {
     test('Example 1', () {
       expect(
-          solveB(r'''
+        solveB(
+          r'''
 32T3K 765
 T55J5 684
 KK677 28
 KTJJT 220
 QQQJA 483
-'''
-              .asLines),
-          equals(5905));
+'''.asLines,
+        ),
+        equals(5905),
+      );
     });
     test('Solution', () {
       expect(solveB(input), equals(243101568));

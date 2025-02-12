@@ -12,7 +12,8 @@ void main() {
   group('Part One', () {
     test('Example 1', () {
       expect(
-          solveA(r'''
+        solveA(
+          r'''
 RL
 
 AAA = (BBB, CCC)
@@ -22,21 +23,24 @@ DDD = (DDD, DDD)
 EEE = (EEE, EEE)
 GGG = (GGG, GGG)
 ZZZ = (ZZZ, ZZZ)
-'''
-              .asLines),
-          equals(2));
+'''.asLines,
+        ),
+        equals(2),
+      );
     });
     test('Example 2', () {
       expect(
-          solveA(r'''
+        solveA(
+          r'''
 LLR
 
 AAA = (BBB, BBB)
 BBB = (AAA, ZZZ)
 ZZZ = (ZZZ, ZZZ)
-'''
-              .asLines),
-          equals(6));
+'''.asLines,
+        ),
+        equals(6),
+      );
     });
     test('Solution', () {
       expect(solveA(input), equals(19631));
@@ -45,7 +49,8 @@ ZZZ = (ZZZ, ZZZ)
   group('Part Two', () {
     test('Example 1', () {
       expect(
-          solveB(r'''
+        solveB(
+          r'''
 LR
 
 11A = (11B, XXX)
@@ -56,9 +61,10 @@ LR
 22C = (22Z, 22Z)
 22Z = (22B, 22B)
 XXX = (XXX, XXX)
-'''
-              .asLines),
-          equals(6));
+'''.asLines,
+        ),
+        equals(6),
+      );
     });
     test('Solution', () {
       expect(solveB(input), equals(21003205388413));

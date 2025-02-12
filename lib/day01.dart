@@ -24,7 +24,8 @@ const List<String> numberStrings = [
   'nine',
 ];
 
-int solveB(Iterable<String> input) => input.map((line) {
+int solveB(Iterable<String> input) =>
+    input.map((line) {
       int? firstDigit;
       int? secondDigit;
 

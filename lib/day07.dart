@@ -38,7 +38,7 @@ class Hand implements Comparable<Hand> {
     };
     final [cardsString, bidString] = line.split(' ');
     final cardValues = [
-      ...cardsString.split('').map((card) => cardValueMap[card]!)
+      ...cardsString.split('').map((card) => cardValueMap[card]!),
     ];
 
     return Hand._(cardValues, int.parse(bidString), getTypeOfHand(cardValues));
@@ -62,7 +62,7 @@ class Hand implements Comparable<Hand> {
     };
     final [cardsString, bidString] = line.split(' ');
     final cardValues = [
-      ...cardsString.split('').map((card) => cardValueMap[card]!)
+      ...cardsString.split('').map((card) => cardValueMap[card]!),
     ];
 
     // Find best hand by change J to different other cards

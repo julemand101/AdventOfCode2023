@@ -59,25 +59,27 @@ class Interval {
   });
 
   factory Interval.parse(String line) => switch (line.split(' ')) {
-        [
-          final String destinationCategory,
-          final String sourceCategory,
-          final String rangeLength
-        ] =>
-          Interval(
-              destinationCategory: int.parse(destinationCategory),
-              sourceCategory: int.parse(sourceCategory),
-              rangeLength: int.parse(rangeLength)),
-        final list => throw Exception('Could not handle: $list'),
-      };
+    [
+      final String destinationCategory,
+      final String sourceCategory,
+      final String rangeLength,
+    ] =>
+      Interval(
+        destinationCategory: int.parse(destinationCategory),
+        sourceCategory: int.parse(sourceCategory),
+        rangeLength: int.parse(rangeLength),
+      ),
+    final list => throw Exception('Could not handle: $list'),
+  };
 
   bool inRange(int sourceValue) =>
       sourceValue >= sourceCategory &&
       sourceValue <= sourceCategory + rangeLength;
 
-  int convert(int sourceValue) => inRange(sourceValue)
-      ? (sourceValue - sourceCategory) + destinationCategory
-      : sourceValue;
+  int convert(int sourceValue) =>
+      inRange(sourceValue)
+          ? (sourceValue - sourceCategory) + destinationCategory
+          : sourceValue;
 }
 
 class AlmanacMap {
@@ -86,19 +88,16 @@ class AlmanacMap {
   final List<Interval> intervals;
   AlmanacMap? next;
 
-  AlmanacMap({
-    required this.form,
-    required this.to,
-    required this.intervals,
-  });
+  AlmanacMap({required this.form, required this.to, required this.intervals});
 
   int convert(int inputValue) {
     AlmanacMap? currentAlmanacMap = this;
     var value = inputValue;
 
     while (currentAlmanacMap != null) {
-      if (currentAlmanacMap.intervals
-              .firstWhereOrNull((interval) => interval.inRange(value))
+      if (currentAlmanacMap.intervals.firstWhereOrNull(
+            (interval) => interval.inRange(value),
+          )
           case final interval?) {
         value = interval.convert(value);
       }

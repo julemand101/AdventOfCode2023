@@ -12,12 +12,14 @@ void main() {
   group('Part One', () {
     test('Example 1', () {
       expect(
-          solveA(r'''
+        solveA(
+          r'''
 Time:      7  15   30
 Distance:  9  40  200
-'''
-              .asLines),
-          equals(288));
+'''.asLines,
+        ),
+        equals(288),
+      );
     });
     test('Solution', () {
       expect(solveA(input), equals(293046));
@@ -26,12 +28,14 @@ Distance:  9  40  200
   group('Part Two', () {
     test('Example 1', () {
       expect(
-          solveB(r'''
+        solveB(
+          r'''
 Time:      7  15   30
 Distance:  9  40  200
-'''
-              .asLines),
-          equals(71503));
+'''.asLines,
+        ),
+        equals(71503),
+      );
     });
     test('Solution', () {
       expect(solveB(input), equals(35150181));

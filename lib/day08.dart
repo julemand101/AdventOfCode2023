@@ -25,9 +25,10 @@ int solveA(Iterable<String> input) {
   while (currentPosition != 'ZZZ') {
     final nextStep = network[currentPosition]!;
 
-    currentPosition = instructions[steps++ % instructions.length]
-        ? nextStep.left
-        : nextStep.right;
+    currentPosition =
+        instructions[steps++ % instructions.length]
+            ? nextStep.left
+            : nextStep.right;
   }
 
   return steps;

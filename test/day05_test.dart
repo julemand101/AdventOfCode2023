@@ -7,7 +7,8 @@ import 'package:advent_of_code_2023/util.dart';
 import 'package:test/test.dart';
 
 final input = File('test/data/day05.txt').readAsLinesSync();
-final exampleInput = r'''
+final exampleInput =
+    r'''
 seeds: 79 14 55 13
 
 seed-to-soil map:
@@ -41,8 +42,7 @@ temperature-to-humidity map:
 humidity-to-location map:
 60 56 37
 56 93 4
-'''
-    .toLinesList();
+'''.toLinesList();
 
 void main() {
   group('Part One', () {

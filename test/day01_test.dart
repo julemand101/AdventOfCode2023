@@ -12,14 +12,16 @@ void main() {
   group('Part One', () {
     test('Example 1', () {
       expect(
-          solveA('''
+        solveA(
+          '''
 1abc2
 pqr3stu8vwx
 a1b2c3d4e5f
 treb7uchet
-'''
-              .asLines),
-          equals(142));
+'''.asLines,
+        ),
+        equals(142),
+      );
     });
     test('Solution', () {
       expect(solveA(input), equals(53974));
@@ -28,7 +30,8 @@ treb7uchet
   group('Part Two', () {
     test('Example 1', () {
       expect(
-          solveB('''
+        solveB(
+          '''
 two1nine
 eightwothree
 abcone2threexyz
@@ -36,9 +39,10 @@ xtwone3four
 4nineeightseven2
 zoneight234
 7pqrstsixteen          
-'''
-              .asLines),
-          equals(281));
+'''.asLines,
+        ),
+        equals(281),
+      );
     });
     test('Solution', () {
       expect(solveB(input), equals(52840));

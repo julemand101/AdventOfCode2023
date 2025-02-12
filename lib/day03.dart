@@ -62,9 +62,12 @@ int solveB(List<String> input) {
 
     for (final (x, char) in line.split('').indexed) {
       if (int.tryParse(char) case final number?) {
-        gearSymbol ??= findSymbolsAround(x, y, input)
-            .where((e) => e.symbol == '*')
-            .firstOrNull;
+        gearSymbol ??=
+            findSymbolsAround(
+              x,
+              y,
+              input,
+            ).where((e) => e.symbol == '*').firstOrNull;
 
         sb.write(number);
       } else {
@@ -80,15 +83,15 @@ int solveB(List<String> input) {
 typedef FoundSymbol = ({String symbol, ({int x, int y}) point2D});
 
 List<FoundSymbol> findSymbolsAround(int x, int y, List<String> input) => [
-      if (safeCheck(x - 1, y - 1, input) case final foundSymbol?) foundSymbol,
-      if (safeCheck(x, y - 1, input) case final foundSymbol?) foundSymbol,
-      if (safeCheck(x + 1, y - 1, input) case final foundSymbol?) foundSymbol,
-      if (safeCheck(x - 1, y, input) case final foundSymbol?) foundSymbol,
-      if (safeCheck(x + 1, y, input) case final foundSymbol?) foundSymbol,
-      if (safeCheck(x - 1, y + 1, input) case final foundSymbol?) foundSymbol,
-      if (safeCheck(x, y + 1, input) case final foundSymbol?) foundSymbol,
-      if (safeCheck(x + 1, y + 1, input) case final foundSymbol?) foundSymbol,
-    ];
+  if (safeCheck(x - 1, y - 1, input) case final foundSymbol?) foundSymbol,
+  if (safeCheck(x, y - 1, input) case final foundSymbol?) foundSymbol,
+  if (safeCheck(x + 1, y - 1, input) case final foundSymbol?) foundSymbol,
+  if (safeCheck(x - 1, y, input) case final foundSymbol?) foundSymbol,
+  if (safeCheck(x + 1, y, input) case final foundSymbol?) foundSymbol,
+  if (safeCheck(x - 1, y + 1, input) case final foundSymbol?) foundSymbol,
+  if (safeCheck(x, y + 1, input) case final foundSymbol?) foundSymbol,
+  if (safeCheck(x + 1, y + 1, input) case final foundSymbol?) foundSymbol,
+];
 
 final regExp = RegExp(r'\.|\d');
 
