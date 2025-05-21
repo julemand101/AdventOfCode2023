@@ -24,35 +24,34 @@ const List<String> numberStrings = [
   'nine',
 ];
 
-int solveB(Iterable<String> input) =>
-    input.map((line) {
-      int? firstDigit;
-      int? secondDigit;
+int solveB(Iterable<String> input) => input.map((line) {
+  int? firstDigit;
+  int? secondDigit;
 
-      for (var i = 0; i < line.length; i++) {
-        int? parsed = int.tryParse(line[i]);
+  for (var i = 0; i < line.length; i++) {
+    int? parsed = int.tryParse(line[i]);
 
-        if (parsed != null) {
+    if (parsed != null) {
+      if (firstDigit == null) {
+        firstDigit = parsed;
+      } else {
+        secondDigit = parsed;
+      }
+    } else {
+      for (final (int value, String string) in numberStrings.indexed) {
+        if (i + string.length - 1 < line.length &&
+            line.substring(i, i + string.length) == string) {
           if (firstDigit == null) {
-            firstDigit = parsed;
+            firstDigit = value;
           } else {
-            secondDigit = parsed;
-          }
-        } else {
-          for (final (int value, String string) in numberStrings.indexed) {
-            if (i + string.length - 1 < line.length &&
-                line.substring(i, i + string.length) == string) {
-              if (firstDigit == null) {
-                firstDigit = value;
-              } else {
-                secondDigit = value;
-              }
-            }
+            secondDigit = value;
           }
         }
       }
+    }
+  }
 
-      secondDigit ??= firstDigit;
+  secondDigit ??= firstDigit;
 
-      return int.parse('$firstDigit$secondDigit');
-    }).sum;
+  return int.parse('$firstDigit$secondDigit');
+}).sum;

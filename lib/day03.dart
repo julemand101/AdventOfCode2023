@@ -62,12 +62,11 @@ int solveB(List<String> input) {
 
     for (final (x, char) in line.split('').indexed) {
       if (int.tryParse(char) case final number?) {
-        gearSymbol ??=
-            findSymbolsAround(
-              x,
-              y,
-              input,
-            ).where((e) => e.symbol == '*').firstOrNull;
+        gearSymbol ??= findSymbolsAround(
+          x,
+          y,
+          input,
+        ).where((e) => e.symbol == '*').firstOrNull;
 
         sb.write(number);
       } else {

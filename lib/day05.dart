@@ -26,10 +26,11 @@ int solveB(List<String> input) {
   final seeds = [...input.first.split(' ').skip(1).map(int.parse)];
   final lookup = <String, AlmanacMap>{};
 
-  for (final lines in input
-      .skip(2)
-      .where((line) => line.isNotEmpty)
-      .splitBefore((line) => line.contains('map:'))) {
+  for (final lines
+      in input
+          .skip(2)
+          .where((line) => line.isNotEmpty)
+          .splitBefore((line) => line.contains('map:'))) {
     final match = regExp.firstMatch(lines.first)!;
 
     final almanacMap = AlmanacMap(
@@ -76,10 +77,9 @@ class Interval {
       sourceValue >= sourceCategory &&
       sourceValue <= sourceCategory + rangeLength;
 
-  int convert(int sourceValue) =>
-      inRange(sourceValue)
-          ? (sourceValue - sourceCategory) + destinationCategory
-          : sourceValue;
+  int convert(int sourceValue) => inRange(sourceValue)
+      ? (sourceValue - sourceCategory) + destinationCategory
+      : sourceValue;
 }
 
 class AlmanacMap {

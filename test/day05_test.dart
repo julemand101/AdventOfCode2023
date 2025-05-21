@@ -42,7 +42,8 @@ temperature-to-humidity map:
 humidity-to-location map:
 60 56 37
 56 93 4
-'''.toLinesList();
+'''
+        .toLinesList();
 
 void main() {
   group('Part One', () {

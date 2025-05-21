@@ -3,16 +3,15 @@
 
 import 'package:collection/collection.dart';
 
-int solveA(Iterable<String> input) =>
-    input
-        .map(parse)
-        .map(
-          (card) =>
-              1 <<
-              card.winningNumbers.intersection(card.numbersYouHave).length >>
-              1,
-        )
-        .sum;
+int solveA(Iterable<String> input) => input
+    .map(parse)
+    .map(
+      (card) =>
+          1 <<
+          card.winningNumbers.intersection(card.numbersYouHave).length >>
+          1,
+    )
+    .sum;
 
 int solveB(Iterable<String> input) {
   List<int> cards = List.generate(input.length, (_) => 1, growable: false);
@@ -42,19 +41,17 @@ RegExp regExp = RegExp(r'Card +(\d+): (.*) \| (.*)');
 
   return (
     cardId: int.parse(match[1]!),
-    winningNumbers:
-        match[2]!
-            .split(' ')
-            .map((e) => e.trim())
-            .where((e) => e.isNotEmpty)
-            .map(int.parse)
-            .toSet(),
-    numbersYouHave:
-        match[3]!
-            .split(' ')
-            .map((e) => e.trim())
-            .where((e) => e.isNotEmpty)
-            .map(int.parse)
-            .toSet(),
+    winningNumbers: match[2]!
+        .split(' ')
+        .map((e) => e.trim())
+        .where((e) => e.isNotEmpty)
+        .map(int.parse)
+        .toSet(),
+    numbersYouHave: match[3]!
+        .split(' ')
+        .map((e) => e.trim())
+        .where((e) => e.isNotEmpty)
+        .map(int.parse)
+        .toSet(),
   );
 }

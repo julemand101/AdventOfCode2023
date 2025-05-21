@@ -23,7 +23,8 @@ DDD = (DDD, DDD)
 EEE = (EEE, EEE)
 GGG = (GGG, GGG)
 ZZZ = (ZZZ, ZZZ)
-'''.asLines,
+'''
+              .asLines,
         ),
         equals(2),
       );
@@ -37,7 +38,8 @@ LLR
 AAA = (BBB, BBB)
 BBB = (AAA, ZZZ)
 ZZZ = (ZZZ, ZZZ)
-'''.asLines,
+'''
+              .asLines,
         ),
         equals(6),
       );
@@ -61,7 +63,8 @@ LR
 22C = (22Z, 22Z)
 22Z = (22B, 22B)
 XXX = (XXX, XXX)
-'''.asLines,
+'''
+              .asLines,
         ),
         equals(6),
       );

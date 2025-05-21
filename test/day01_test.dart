@@ -18,7 +18,8 @@ void main() {
 pqr3stu8vwx
 a1b2c3d4e5f
 treb7uchet
-'''.asLines,
+'''
+              .asLines,
         ),
         equals(142),
       );
@@ -39,7 +40,8 @@ xtwone3four
 4nineeightseven2
 zoneight234
 7pqrstsixteen          
-'''.asLines,
+'''
+              .asLines,
         ),
         equals(281),
       );

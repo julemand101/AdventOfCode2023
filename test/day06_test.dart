@@ -16,7 +16,8 @@ void main() {
           r'''
 Time:      7  15   30
 Distance:  9  40  200
-'''.asLines,
+'''
+              .asLines,
         ),
         equals(288),
       );
@@ -32,7 +33,8 @@ Distance:  9  40  200
           r'''
 Time:      7  15   30
 Distance:  9  40  200
-'''.asLines,
+'''
+              .asLines,
         ),
         equals(71503),
       );

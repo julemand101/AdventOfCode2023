@@ -3,11 +3,11 @@ description: Solutions for Advent of Code 2023.
 version: 0.0.1
 
 environment:
-  sdk: "^3.7.0"
+  sdk: "^3.8.0"
 
 dependencies:
   collection: ^1.19.0
 
 dev_dependencies:
-  lints: ^5.0.0
-  test: ^1.25.0
+  lints: ^6.0.0
+  test: ^1.26.0

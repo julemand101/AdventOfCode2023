@@ -19,7 +19,8 @@ T55J5 684
 KK677 28
 KTJJT 220
 QQQJA 483
-'''.asLines,
+'''
+              .asLines,
         ),
         equals(6440),
       );
@@ -38,7 +39,8 @@ T55J5 684
 KK677 28
 KTJJT 220
 QQQJA 483
-'''.asLines,
+'''
+              .asLines,
         ),
         equals(5905),
       );
